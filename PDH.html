@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html style="max-width:400px; max-height:500px;">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Pratima Neupane">
+  <title> Hofstede Cultural User Interface</title>
+  <link  rel="stylesheet" type="text/css" href="PDH.css">
+
+<script type="text/javasript">
+  function active(){
+    var searchbox= document.getElementById('searchbox');
+    var googlesearchresults= document.getElementById('googlesearchresults');
+  }
+</script>
+
+<script type="text/javascript">
+  function changecolor (color){
+    document.getElementsByTagName('Body')[0].style.
+    backgroundColor= color.value;
+  }
+</script>
+
+
+</head>
+
+<body>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script id="DraggableScript" src="DraggableScript.js"></script>
+    <script id="CustomGoogleScript" src="CustomGooglesearch.js"></script>
+
+<div id="searchbox">
+  <gcse:searchbox></gcse:searchbox>
+  <script>
+  (function SEA() {
+    var cx = '004948233039976955410:hpv3og-wj60'; // Insert your own Custom Search engine ID here
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+  </script>
+
+</div>
+
+<div id="googlesearchresults">
+  <gcse:searchresults></gcse:searchresults>
+</div>
+
+
+
+<style type="text/css">
+  div.gsc-thumbnail-inside,
+  div.gsc-url-top {
+    display: none !important;
+  }
+</style>
+
+<div id="SocialMedia">
+<a href="https://www.facebook.com/" target="_blank"><img src="images/facebook.png" width="30px" /></a>
+<a href="https://twitter.com/" target="_blank"><img src="images/twitter.png" width = "30px"/></a>
+  <a href="https://www.youtube.com/" target="_blank"><img src="images/youtube.png" width = "30px"></a>
+</div>
+
+<!--<script>
+$("#searchresults").hide();
+$("#searchbox").change(function(){
+  $("#searchresults").show();
+});
+</script>-->
+
+  <script>
+  function showImage()
+  {
+    if(this.files && this.files[0])
+    {
+      var obj = new FileReader();
+      obj.onload = function(data){
+
+        document.body.style.background= "url("+data.target.result+") no-repeat fixed" ;
+        document.body.style.backgroundSize= "100% 100%" ;
+      }
+      obj.readAsDataURL(this.files[0]);
+  }
+}
+</script>
+
+<script>
+$(function(){
+  /*$("#textCreate").click(function(){
+    $("body").append("<text id=\"draggableText\">Add text here</ext>.");
+    $("#draggableText").draggable();*/
+
+  var selectedElement;
+  var elementId = 1;
+    //Add text function
+		$("#textCreate").click(function(){
+			elementId++;
+			var elementName = "draggableText" + elementId;
+			var hashedElementName = "#"+elementName
+
+			$("body").append("<text id="+elementName+">Add text here</ext>.");
+			$(hashedElementName).draggable();
+      $(hashedElementName).css("position", "absolute");
+
+			$(hashedElementName).dblclick(function(){
+				var textAdded = prompt("Please enter your text", "Add text here");
+				if (textAdded != null){
+					$(hashedElementName).text(textAdded)
+				}
+			});
+
+    /*  $("#textcolor").click(function(){
+        $(selectedElement).css('color','white');
+      });*/
+
+    $("#draggableText").dblclick(function(){
+      var textAdded = prompt("Please enter your text", "Add text here");
+      if (textAdded != null){
+        $('#draggableText').text(textAdded)
+      }
+    });
+
+    $("#Delete").click(function(){
+      $(selectedElement).remove();
+    });
+
+    $(hashedElementName).click(function(){
+      selectedElement = this;
+      size = $(selectedElement).css( "font-size" );
+      size = parseInt(size, 10);
+      $('#fontSize').val(size);
+    });
+  });
+
+  //Change font size function
+  $("#saveFontSize").click(function(){
+    size = $('#fontSize').val();
+    size = parseInt(size, 10);
+    $(selectedElement).css("font-size", size);
+  });
+
+  //Change font weight function
+  $("#boldFontWeight").click(function(){
+    $(selectedElement).css("font-weight", "bold");
+  });
+
+  //Change font weight function
+  $("#normalFontWeight").click(function(){
+    $(selectedElement).css("font-weight", "normal");
+  });
+//Change the font color
+  $("#text").change(function(){
+    var color=$('#text').val();
+    $(selectedElement).css("color",color);
+});
+
+  //Change font style function
+  $("#italicFontStyle").click(function(){
+    $(selectedElement).css("font-style", "italic");
+  });
+
+  //Change font style function
+  $("#normalFontStyle").click(function(){
+    $(selectedElement).css("font-style", "normal");
+  });
+
+  $("#CloseToolBar").click(function(){
+    $("#toolBox").css("display", "none");
+  });
+  $("#toolBox").draggable({containment:[0,0,1600,700]});
+
+  });
+
+
+</script>
+
+
+  <div id="toolBox"  resizable:true>
+  <div Style="width:100%; height:20px; background:Brown ;">
+    <button id="CloseToolBar" style="background:url(images/CloseToolBar.png);width:15px;  height:15px;margin-left: 3px; background-size:cover; border: none;"></Button>
+  </div>
+
+  <div Style="height: 100%; width: 100%; display: inline-block; margin-top: 3px; ">
+    <button id="textCreate" title="Create Text" style="background-image: url(images/Text.png); width: 35px; height: 35px; margin-left: 3px; background-size:cover; border: none; border-radius: 3px; "></button>
+    <button id="Delete" title="Delete Text" style="  width: 35px; height: 35px; margin-left: 3px; background: url(images/Delete.png); background-size:cover; border: none; border-radius: 3px;"></button>
+
+     <!--upload background onclick function-->
+    <input id="files" type="file" onchange="showImage.call(this)" style="display:none"></Input>
+    <button id = "BackgroundImage"title="Upload Background Image" onclick="document.getElementById('files').click()" style="  background: url(images/BackgroundUpload.jpg);   width: 35px;height: 35px;margin-left: 3px;  background-size:cover;  border:white; border-radius: 3px;"></button>
+    <Button id="saveButton" title="Save this Page" style="width: 35px;height: 35px;margin-left: 3px; background: url(images/SaveButton.jpg); background-size:cover; border: none; border-radius: 3px;"></Button>
+    <hr>
+    <Text>Font Size: </Text>
+    <Input id="fontSize" Style="width: 50px;"></Input>
+    <Button id="saveFontSize">Apply</Button>
+    <Button Style="border: 1px solid white; border-radius: 3px; margin: 2px;" id="normalFontStyle">Normal Style</Button>
+    <Button id="italicFontStyle" title="Italic"style="width: 25px; height: 25px; background: url('images/italic.png'); background-size:cover; border: 1px; border-radius: 3px; background-color:transparent;"></Button>
+    <Button id="boldFontWeight" title="Bold"style="width: 25px; height: 25px; background: url('images/bold.png'); background-size:cover; border: 1px;border-radius: 3px;  background-color:transparent;"></Button>
+    <Button Style="border: 1px solid white; border-radius: 3px; margin: 2px;" id="normalFontWeight">Normal Weight</Button>
+        <select id="text">
+           <option  value="select">Change Text Color</option>
+           <option value="#E34234">Cinnabar</option>
+           <option value="#E4D00A">Citrine</option>
+           <option value="green">Green</option>
+           <option value="#DC143C">Crimson</option>
+           <option value="#00BFFF">Capri</option>
+           <option value="white">White</option>
+       </select>
+<select  size="" onchange='(changecolor(this))'>
+    <option value="select">Change Background Color</option>
+    <option value="#E34234">Cinnabar</option>
+    <option value="#E4D00A">Citrine</option>
+    <option value="green">Green</option>
+    <option value="#DC143C">Crimson</option>
+    <option value="#00BFFF">Capri</option>
+</select>
+
+  </div>
+</div>
+</body>
+</html>

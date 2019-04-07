@@ -1,0 +1,41 @@
+
+body{
+
+  background-color: #00CED1;
+  background-position: center-center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+#googlesearchresults{
+  height: 500px;
+  width: 400px;
+  overflow: auto;
+}
+
+#searchbox{
+  height: 35px;
+  width: 400px;
+
+}
+
+#toolBox{
+width:200px;
+height:250px;
+/*background:#00CED1;*/
+border: 1px solid black;
+border-radius: 2px;
+position:absolute;
+}
+
+#textCreate{
+  text-inline: absolute;
+}
+
+
+#CloseToolBar{
+  width:10px;
+  height:10px;
+
+}
